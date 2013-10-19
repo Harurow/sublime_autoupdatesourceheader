@@ -1,25 +1,42 @@
-# Auto Update File Header for Sublime Text plug-in
+# Auto Update Source Header for Sublime Text plug-in
 
 Sublime Text 2/3 plug-in.
 
-Auto update source header comment.
+Auto update source header.
+* modified user name
+* modified date
+* copyright year
 
-### Modified User Name ###
+ex)
+your name : Harurow / date : 2013-10-20
 
+* before
+```c:before_source.c
+/**********
+* modified by     : O.Takafumi.
+* last modified   : 2011-04-19
+* Copyright (c) 2011 XXXXXX.
+***********/
+```
 
-### Modified Date ###
-### Copyright Year ###
-
+* after
+```c:after_source.c
+/**********
+* modified by     : Harurow
+* last modified   : 2013-10-20
+* Copyright (c) 2011-2013 XXXXXX.
+***********/
+```
 
 ## How to Install ##
 
 With [Package Control](https://sublime.wbond.net/installation):
 
-1. Run “Package Control: Install Package” command, find and install `Auto Update File Header` plugin.
+1. Run “Package Control: Install Package” command, find and install `Auto Update Source Header` plugin.
 
 Manually:
 
-1. Clone or [download](https://github.com/Harurow/sublime_autoupdatefileheader/archive/master.zip) git repo into your packages folder (in ST, find Browse Packages... menu item to open this folder)
+1. Clone or [download](https://github.com/Harurow/sublime_autoupdatesourceheader/archive/master.zip) git repo into your packages folder (in ST, find Browse Packages... menu item to open this folder)
 
 
 ## License

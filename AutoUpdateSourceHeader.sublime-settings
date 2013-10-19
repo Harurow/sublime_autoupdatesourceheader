@@ -14,14 +14,14 @@
 		"enable": true,
 		"patterns": [
 			"@?updater\\s*[:= ]",
-			"@?modified by\\s*[:= ]"
+			"@?modified by\\s*[:= ] ?"
 		]
 	},
 	"modified_date": {
 		"enable": true,
 		"format": "%Y-%m-%d",
 		"patterns": [
-			"@?last modified\\s*[:= ]"
+			"@?last modified\\s*[:= ] ?"
 		]
 	}
 }
