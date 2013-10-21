@@ -1,9 +1,24 @@
 {
 	"analize_lines": 500,
 	"my_name": "<Enter Your Name>",
-	"ignore_files": [
-		"AutoUpdateSourceHeader.sublime-settings"
-	], 
+	"file_exclude_patterns": [
+	],
+	"file_include_patterns": [
+		"*.c",
+		"*.cpp",
+		"*.cxx",
+		"*.cc",
+		"*.h",
+		"*.hpp",
+		"*.hxx",
+		"*.hh",
+		"*.cs",
+		"*.js",
+		"*.py",
+		"*.rb",
+		"*.java",
+		"*.m"
+	],
 	"copyright": {
 		"enable": true,
 		"patterns": [

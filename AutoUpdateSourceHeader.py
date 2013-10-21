@@ -3,6 +3,7 @@ import sublime
 import sublime_plugin
 import re
 import os
+import fnmatch
 from datetime import *
 
 class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
@@ -30,7 +31,11 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 					# update 'Year'. XXXX-<Year>
 					span = m.span(2);
 					rgn = sublime.Region(offset + span[0], offset + span[1]);
-					self.view.replace(edit, rgn, str(today.year));
+					old_year = self.view.substr(rgn);
+					new_year = str(today.year);
+					print ("AutoUpdateSourceHeader - copyright:"
+						+ old_year + " > " + new_year);
+					self.view.replace(edit, rgn, new_year);
 				return True;
 
 			m = re.search(self.__year_pattern2, sub);
@@ -40,7 +45,11 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 					# update 'Year'. XXXX-<Year>
 					span = m.span(1);
 					rgn = sublime.Region(offset + span[0], offset + span[1]);
-					self.view.replace(edit, rgn, m.group(1) + "-" + str(today.year));
+					old_year = self.view.substr(rgn);
+					new_year = m.group(1) + "-" + str(today.year);
+					print ("AutoUpdateSourceHeader - copyright:"
+						+ old_year + " > " + new_year);
+					self.view.replace(edit, rgn, new_year);
 				return True;
 
 		return False;
@@ -59,6 +68,8 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 			offset = region.a + m.end(0);
 			sub = m.string[m.end(0):];
 			rgn = sublime.Region(offset, offset + len(sub));
+			print ("AutoUpdateSourceHeader - modified_user_name:"
+				+ self.view.substr(rgn) + " > " + my_name);
 			self.view.replace(edit, rgn, my_name);
 			return True;
 
@@ -75,12 +86,14 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 			if not m:
 				continue;
 			# 'Date' matched
-			str = today.strftime(update_date["format"]);
+			date_str = today.strftime(update_date["format"]);
 
 			offset = region.a + m.end(0);
 			sub = m.string[m.end(0):];
 			rgn = sublime.Region(offset, offset + len(sub));
-			self.view.replace(edit, rgn, str);
+			print ("AutoUpdateSourceHeader - modified_date:"
+				+ self.view.substr(rgn) + " > " + date_str);
+			self.view.replace(edit, rgn, date_str);
 			return True;
 
 		return False;
@@ -89,17 +102,34 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 		settings = sublime.load_settings("AutoUpdateSourceHeader.sublime-settings");
 		analize_lines = settings.get("analize_lines");
 		my_name = settings.get("my_name");
-		ignore_files = settings.get("ignore_files");
+		file_exclude_patterns = settings.get("file_exclude_patterns");
+		file_include_patterns = settings.get("file_include_patterns");
 		copyright = settings.get("copyright");
 		modified_user_name = settings.get("modified_user_name");
 		modified_date = settings.get("modified_date");
 
+		match_file = False;
 		file_name = self.view.file_name();
-		if file_name:
-			file_name = os.path.basename(file_name.lower());
-			for ignore_file in ignore_files:
-				if file_name == ignore_file.lower():
-					return;
+		if not file_name:
+			return;
+
+		file_name = os.path.basename(file_name);
+
+		for fep in file_exclude_patterns:
+			print (fep);
+			if fnmatch.fnmatch(file_name, fep):
+				# matched exclude patterns
+				return;
+
+		for fip in file_include_patterns:
+			print (fip);
+			if fnmatch.fnmatch(file_name, fip):
+				# matched include patterns
+				match_file = True;
+				break;
+
+		if match_file == False:
+			return;
 
 		cnt = 1 if copyright["enable"] else 0;
 		cnt += 1 if modified_user_name["enable"] else 0;

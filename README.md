@@ -13,9 +13,9 @@ your name : Harurow / date : 2013-10-20
 * before
 ```c:before_source.c
 /**********
-* modified by     : Harurow
-* last modified   : 2013-10-21
-* Copyright (c) 2011-2013 XXXXXX.
+* modified by     : O.Takafumi.
+* last modified   : 2011-04-19
+* Copyright (c) 2011 XXXXXX.
 ***********/
 ```
 
