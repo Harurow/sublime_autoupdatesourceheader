@@ -133,18 +133,7 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 				break;
 
 class UpdateSourceHeader(sublime_plugin.EventListener):
-	def __init__(self):
-		self.__done = False;
-
-	def on_modified(self, view):
-		if view.is_dirty() and self.__done == False:
-			self.__done = True;
+	def on_pre_save(self, view):
+		if view.is_dirty():
 			view.run_command("auto_update_source_header");
-
-	def on_activated(self, view):
-		self.__done = False;
-
-	def on_post_save(self, view):
-		self.__done = False;
-
 
