@@ -1,0 +1,13 @@
+AutoUpdateSourceHeader
+======================
+
+Thank you for install this plugin.
+please setup this plugin settings.
+
+1. Run Åg[Preferences] - [Package Settings] - [AutoUpdateSourceHeader] - [Settings -User]Åh
+
+2. input your name.
+{
+	"my_name": **INPUT YOUR NAME**
+}
+
