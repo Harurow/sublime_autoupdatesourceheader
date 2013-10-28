@@ -11,7 +11,7 @@ ex)
 your name : Harurow / date : 2013-10-20
 
 * before
-```c:before_source.c
+```c
 /**********
 * modified by     : O.Takafumi.
 * last modified   : 2011-04-19
@@ -20,7 +20,7 @@ your name : Harurow / date : 2013-10-20
 ```
 
 * after
-```c:after_source.c
+```c
 /**********
 * modified by     : Harurow
 * last modified   : 2013-10-20
