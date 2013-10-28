@@ -116,16 +116,16 @@ class AutoUpdateSourceHeaderCommand(sublime_plugin.TextCommand):
 		file_name = os.path.basename(file_name);
 
 		for fep in file_exclude_patterns:
-			print (fep);
 			if fnmatch.fnmatch(file_name, fep):
 				# matched exclude patterns
+				print ("exclude patterns matched : " + file_name);
 				return;
 
 		for fip in file_include_patterns:
-			print (fip);
 			if fnmatch.fnmatch(file_name, fip):
 				# matched include patterns
 				match_file = True;
+				print ("include patterns matched : " + file_name);
 				break;
 
 		if match_file == False:

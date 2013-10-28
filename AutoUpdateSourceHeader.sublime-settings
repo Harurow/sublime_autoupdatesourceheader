@@ -22,21 +22,21 @@
 	"copyright": {
 		"enable": true,
 		"patterns": [
-			"(copyright|\\(c\\)|©)\\s+"
+			"(?i)(copyright|\\(c\\)|©)\\s+"
 		]
 	},
 	"modified_user_name": {
 		"enable": true,
 		"patterns": [
-			"@?updater\\s*[:= ]",
-			"@?modified by\\s*[:= ] ?"
+			"(?i)@?updater\\s*[:= ]",
+			"(?i)@?modified by\\s*[:= ] ?"
 		]
 	},
 	"modified_date": {
 		"enable": true,
 		"format": "%Y-%m-%d",
 		"patterns": [
-			"@?last modified\\s*[:= ] ?"
+			"(?i)@?last modified\\s*[:= ] ?"
 		]
 	}
 }

@@ -1,0 +1,24 @@
+AutoUpdateSourceHeader
+======================
+
+1.0.3 change log
+
+* change default setting (ignore case)
+  * copyright.patterns
+    before
+      "(copyright|\\(c\\)|©)\\s+"
+    after
+      "(?i)(copyright|\\(c\\)|©)\\s+"
+  * modified_user_name.patterns
+    before
+      "@?updater\\s*[:= ]",
+      "@?modified by\\s*[:= ] ?"
+    after
+      "(?i)@?updater\\s*[:= ]",
+      "(?i)@?modified by\\s*[:= ] ?"
+  * modified_date.patterns
+    before
+      "@?last modified\\s*[:= ] ?"
+    after
+      "(?i)@?last modified\\s*[:= ] ?"
+
